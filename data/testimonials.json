@@ -1,0 +1,85 @@
+{
+  "testimonials": [
+    {
+      "id": "t1",
+      "name": "Front End Project Client",
+      "role": "Front End Developer / Designer · Oct 2025",
+      "quote": "Syed is a sharp front end developer. He understands the app space well and is very thorough in his approach.",
+      "rating": 5,
+      "image": "",
+      "accent": "from-indigo-400 to-fuchsia-500"
+    },
+    {
+      "id": "t2",
+      "name": "Mobile Security Client",
+      "role": "Mobile App Security Expert · 2024",
+      "quote": "Syed did a fantastic job for us. Helped us really dive into where our vulnerabilities were and pass our compliance audit.",
+      "rating": 5,
+      "image": "",
+      "accent": "from-emerald-400 to-cyan-500"
+    },
+    {
+      "id": "t3",
+      "name": "GA4 / Firebase Client",
+      "role": "iOS — GA4 via Firebase · 2024",
+      "quote": "Syed is a pleasure to work with. He's extremely knowledgeable and diligent and delivered very high-quality work. Highly recommended!",
+      "rating": 5,
+      "image": "",
+      "accent": "from-amber-400 to-rose-500"
+    },
+    {
+      "id": "t4",
+      "name": "FX1 Sports",
+      "role": "iOS / Swift Developer · 2024",
+      "quote": "Syed performed consistently well for us over the time he was with us. We're a startup, meaning we're a little more challenging to work for than the standard company, but Syed managed that very well and helped move us forward to where we are today.",
+      "rating": 5,
+      "image": "",
+      "accent": "from-rose-400 to-amber-500"
+    },
+    {
+      "id": "t5",
+      "name": "Android Project Client",
+      "role": "Ongoing Android App Development · 2021",
+      "quote": "Very happy with the quality of work that Syed did for me. Displayed a great understanding of code and was very helpful in getting me back on track.",
+      "rating": 5,
+      "image": "",
+      "accent": "from-cyan-400 to-emerald-500"
+    },
+    {
+      "id": "t6",
+      "name": "Mobile App Owner",
+      "role": "Swift & Java Mobile Updates · 2020",
+      "quote": "Great job on all fronts. Have recommended Syed to a few colleagues already and will be calling on him again for the next update to my app.",
+      "rating": 5,
+      "image": "",
+      "accent": "from-fuchsia-400 to-violet-500"
+    },
+    {
+      "id": "t7",
+      "name": "iOS Consulting Client",
+      "role": "Senior iOS Consultation · 2019",
+      "quote": "Job well done — thank you Amais. He is the perfect guy for iOS. Has complete command on application development, managing APIs, server-side and the production environment of the App Store. Recommended for iOS app development.",
+      "rating": 5,
+      "image": "",
+      "accent": "from-violet-400 to-indigo-500"
+    },
+    {
+      "id": "t8",
+      "name": "FindHrr Team",
+      "role": "iOS Developer · 2015",
+      "quote": "We added Syed to our dev team during a raise of workload and he integrated very well with the rest of the team. He communicates fluently and delivered the job on time.",
+      "rating": 5,
+      "image": "",
+      "accent": "from-rose-400 to-fuchsia-500"
+    },
+    {
+      "id": "t9",
+      "name": "Long-term Client",
+      "role": "Hourly Development · 2016–2018",
+      "quote": "Syed is great to work with — excellent communicator and delivers great product. Will hire again.",
+      "rating": 5,
+      "image": "",
+      "accent": "from-amber-400 to-orange-500"
+    }
+  ]
+}

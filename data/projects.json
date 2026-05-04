@@ -1,0 +1,48 @@
+{
+  "projects": [
+    {
+      "id": "fx1-sports",
+      "title": "FX1 Sports",
+      "description": "Real-time UFC fight statistics, trend analysis and winner predictions. Live strike analytics, fight schedules, results and detailed UFC fight night insights for MMA fans.",
+      "tags": ["SwiftUI", "GraphQL", "Swift", "Alamofire", "Figma"],
+      "role": "Senior iOS Engineer",
+      "image": "",
+      "accent": "from-rose-500 to-amber-500",
+      "link": "",
+      "year": "2024"
+    },
+    {
+      "id": "findhrr",
+      "title": "FindHrr",
+      "description": "FINDHRR — Lesbian, Queer and Bisexual Network. The most popular app for lesbian and queer women across the spectrum, launched worldwide on the App Store.",
+      "tags": ["iOS", "Objective-C", "Swift", "Social Network"],
+      "role": "iOS Developer",
+      "image": "",
+      "accent": "from-fuchsia-500 to-violet-500",
+      "link": "https://itunes.apple.com/gb/app/findhrr/id586575577",
+      "year": "2015"
+    },
+    {
+      "id": "artiste-toolkit",
+      "title": "Artiste Toolkit UK",
+      "description": "Mobile toolkit application for performing artists in the UK — bookings, schedules, invoicing and on-the-road tools in one place.",
+      "tags": ["iOS", "Swift", "REST APIs"],
+      "role": "iOS Developer",
+      "image": "",
+      "accent": "from-violet-500 to-indigo-500",
+      "link": "",
+      "year": ""
+    },
+    {
+      "id": "video-rewards",
+      "title": "Video Rewards",
+      "description": "Rewards-based video platform allowing users to earn while watching curated content. Native iOS implementation with secure rewards engine.",
+      "tags": ["iOS", "Swift", "Video", "Rewards Engine"],
+      "role": "iOS Developer",
+      "image": "",
+      "accent": "from-cyan-500 to-blue-500",
+      "link": "",
+      "year": ""
+    }
+  ]
+}

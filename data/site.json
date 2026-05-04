@@ -1,0 +1,127 @@
+{
+  "personal": {
+    "name": "Syed Amais",
+    "shortName": "Syed A.",
+    "initials": "SA",
+    "title": "Full Stack Developer | iOS | Android | React Native | Flutter",
+    "tagline": "Senior Mobile & Full Stack Developer — 12+ years",
+    "location": "Sydney, Australia",
+    "rate": "$50/hr",
+    "experience": "12+",
+    "metaDescription": "Syed Amais — Senior Full Stack Developer specialising in iOS, Android, React Native and Flutter. 12+ years experience, 100% job success rating, based in Sydney.",
+    "metaKeywords": "Syed Amais, iOS Developer Sydney, Android Developer, React Native, Flutter, Full Stack Developer, Mobile App Developer, Swift, Kotlin"
+  },
+  "availability": {
+    "show": true,
+    "text": "100% Job Success · Available for new engagements"
+  },
+  "hero": {
+    "headlineLine1": "Reliable",
+    "headlineLine2": "mobile & full-stack",
+    "headlineGradient": "engineering",
+    "headlineLine3": ".",
+    "subtitle": "Hi, I'm Syed Amais — a senior software engineer based in Sydney. With 12 years of experience I provide reliable, efficient and maintainable solutions across iOS, Android, React Native, Flutter and full-stack web.",
+    "primaryCtaText": "Hire Me",
+    "primaryCtaLink": "#contact",
+    "secondaryCtaText": "View Work",
+    "secondaryCtaLink": "#work"
+  },
+  "stats": [
+    { "value": "12+", "label": "Years experience" },
+    { "value": "92", "label": "Projects delivered" },
+    { "value": "2,179+", "label": "Hours billed" },
+    { "value": "100%", "label": "Job success" }
+  ],
+  "trustedBy": [
+    "Upwork Top Rated",
+    "100% Job Success",
+    "ID Verified",
+    "Phone Verified",
+    "MSCS — CQ University",
+    "Sydney · Australia"
+  ],
+  "about": {
+    "heading": "Reliable, efficient, maintainable software — shipped.",
+    "description": "With 12 years of experience in software development I provide reliable, efficient, maintainable and cost-effective solutions with proven technical and soft skills. I'm experienced in iOS and Android mobile application development with their native development languages or using React Native and Flutter — and equally comfortable on the backend, APIs and cloud.",
+    "highlights": [
+      { "title": "Committed to Quality.", "text": "Recognised on 26+ completed Upwork engagements.", "color": "indigo" },
+      { "title": "Senior delivery.", "text": "You work directly with me — no juniors, no hand-offs.", "color": "fuchsia" },
+      { "title": "Clear communicator.", "text": "Calm, async-friendly, transparent updates throughout.", "color": "cyan" }
+    ],
+    "infoCards": [
+      { "label": "Based in", "value": "Sydney, Australia", "wide": false },
+      { "label": "Stack focus", "value": "Swift · Kotlin · React Native · Flutter", "wide": false },
+      { "label": "Specialty", "value": "Mobile apps & full-stack", "wide": false },
+      { "label": "Education", "value": "MSCS, Software Engineering — Central Queensland University (2009–2011)", "wide": true },
+      { "label": "Languages", "value": "English (Native or Bilingual)", "wide": false }
+    ]
+  },
+  "skills": [
+    {
+      "title": "iOS / Native",
+      "color": "indigo",
+      "description": "Robust iOS apps built with Swift, SwiftUI, Combine and the latest Apple frameworks.",
+      "tags": ["Swift", "SwiftUI", "Objective-C", "Combine", "Alamofire", "Core Data"]
+    },
+    {
+      "title": "Android / Native",
+      "color": "emerald",
+      "description": "Native Android development with Kotlin, Jetpack Compose and modern architectures.",
+      "tags": ["Kotlin", "Java", "Jetpack Compose", "MVVM", "Retrofit", "Room"]
+    },
+    {
+      "title": "Cross-Platform",
+      "color": "cyan",
+      "description": "Ship to both stores from a single codebase without compromising native feel.",
+      "tags": ["React Native", "Flutter", "Expo", "Dart", "TypeScript"]
+    },
+    {
+      "title": "Backend & APIs",
+      "color": "fuchsia",
+      "description": "Server-side and API development with Node.js, Firebase, GraphQL and REST.",
+      "tags": ["Node.js", "GraphQL", "REST APIs", "Firebase", "PostgreSQL", "MongoDB"]
+    },
+    {
+      "title": "Tools & Cloud",
+      "color": "amber",
+      "description": "Modern toolchains, CI/CD pipelines, App Store / Play Store submissions.",
+      "tags": ["Git", "Xcode", "Android Studio", "Firebase", "AWS", "Figma"]
+    },
+    {
+      "title": "Strengths",
+      "color": "rose",
+      "description": "Insights from 90+ completed jobs.",
+      "tags": ["Committed to Quality", "Collaborative", "Reliable", "Clear Communicator", "Solution Oriented", "Detail Oriented"]
+    }
+  ],
+  "services": [
+    { "number": "01", "title": "iOS Apps", "description": "Native iOS applications built with Swift / SwiftUI from concept to App Store launch.", "items": ["Swift / SwiftUI / UIKit", "App Store submissions", "TestFlight beta"], "color": "indigo" },
+    { "number": "02", "title": "Android Apps", "description": "Native Android apps with Kotlin & Jetpack Compose, optimised for performance.", "items": ["Kotlin / Java", "Play Store launch", "Material Design"], "color": "emerald" },
+    { "number": "03", "title": "Cross-Platform", "description": "React Native and Flutter apps shipping to both stores from one codebase.", "items": ["React Native / Flutter", "Native modules", "Push notifications"], "color": "cyan" },
+    { "number": "04", "title": "Maintenance & Audits", "description": "Code audits, security reviews, SDK integrations and ongoing maintenance.", "items": ["Security audits", "GA4 / Firebase / Facebook SDK", "Bug fixes & updates"], "color": "fuchsia" }
+  ],
+  "process": [
+    { "step": 1, "label": "Discovery", "title": "Understand the why", "description": "Goals, constraints, users. We define what success looks like before any code.", "color": "indigo" },
+    { "step": 2, "label": "Design", "title": "Shape the system", "description": "Architecture, data model, UI flows and a phased delivery plan you can sign off.", "color": "fuchsia" },
+    { "step": 3, "label": "Development", "title": "Build & iterate", "description": "Weekly demos, async updates, transparent progress you can watch live.", "color": "cyan" },
+    { "step": 4, "label": "Delivery", "title": "Ship & support", "description": "App Store / Play Store submission, training and ongoing support.", "color": "emerald" }
+  ],
+  "contact": {
+    "heading": "Let's build something that lasts.",
+    "subtitle": "Tell me about the problem you're solving — I usually reply within 4–8 hours.",
+    "email": "syeda.apps@gmail.com",
+    "phone": "",
+    "whatsapp": "",
+    "timezone": "Sydney, Australia (AEST · UTC+10)",
+    "social": {
+      "github": "",
+      "linkedin": "",
+      "twitter": "",
+      "upwork": "",
+      "website": "https://astapor.com.au"
+    }
+  },
+  "footer": {
+    "tagline": "Crafted with care in Sydney."
+  }
+}

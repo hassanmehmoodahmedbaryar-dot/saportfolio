@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Admin — Portfolio CMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans:['Inter','system-ui','sans-serif'], mono:['JetBrains Mono','monospace'] } } } };
+</script>
+<style>
+  :root { --bg:#fafafa; --surface:#fff; --border:#e5e7eb; --fg:#0f172a; --muted:#64748b; --accent:#6366f1; }
+  .dark { --bg:#0b0c10; --surface:#111217; --border:#22232b; --fg:#f1f5f9; --muted:#94a3b8; }
+  html, body { background: var(--bg); color: var(--fg); font-family: 'Inter', system-ui, sans-serif; }
+  input, textarea, select { background: var(--surface); color: var(--fg); border: 1px solid var(--border); border-radius: 10px; padding: .55rem .75rem; width: 100%; outline: none; transition: border-color .15s, box-shadow .15s; font: inherit; }
+  input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(99,102,241,.15); }
+  label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .04em; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; }
+  .btn { display:inline-flex; align-items:center; gap:.5rem; padding:.55rem 1rem; border-radius:10px; font-weight:600; font-size:14px; transition: transform .1s, opacity .15s; cursor:pointer; border:1px solid transparent; }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: #0f172a; color:#fff; }
+  .dark .btn-primary { background:#fff; color:#0f172a; }
+  .btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); }
+  .btn-ghost:hover { background: var(--bg); }
+  .btn-danger { background:#ef4444; color:#fff; }
+  .btn-success { background:#10b981; color:#fff; }
+  .tab-btn { display:flex; align-items:center; gap:.6rem; padding:.55rem .75rem; border-radius:10px; font-weight:500; font-size:14px; color: var(--muted); cursor:pointer; }
+  .tab-btn:hover { background: var(--bg); color: var(--fg); }
+  .tab-btn.active { background: var(--accent); color: #fff; }
+  .tab-btn.active .badge { background: rgba(255,255,255,.25); color:#fff; }
+  .badge { display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:20px; padding:0 6px; font-size:11px; font-weight:700; background: var(--bg); color: var(--muted); border-radius:9999px; }
+  .toolbar { position: sticky; top: 0; z-index: 5; background: color-mix(in oklab, var(--bg) 85%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+  .row-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+  .grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-3 { display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  @media (max-width: 720px) { .grid-2,.grid-3 { grid-template-columns: 1fr; } }
+  .pill { display:inline-flex; align-items:center; gap:.4rem; padding:.25rem .6rem; border-radius:9999px; font-size:11px; font-weight:600; background: var(--bg); border:1px solid var(--border); color: var(--muted); }
+  .toast { position: fixed; bottom: 20px; right: 20px; padding: 12px 16px; background:#0f172a; color:#fff; border-radius:10px; font-size:14px; opacity:0; transform: translateY(8px); pointer-events:none; transition: opacity .25s, transform .25s; z-index:50; }
+  .toast.show { opacity:1; transform: translateY(0); }
+  .swatch { width:22px; height:22px; border-radius:6px; border:1px solid var(--border); }
+  .swatch.indigo { background: rgb(99 102 241); }
+  .swatch.fuchsia { background: rgb(217 70 239); }
+  .swatch.cyan { background: rgb(6 182 212); }
+  .swatch.emerald { background: rgb(16 185 129); }
+  .swatch.amber { background: rgb(245 158 11); }
+  .swatch.rose { background: rgb(244 63 94); }
+  .img-preview { width: 84px; height: 84px; border-radius: 12px; object-fit: cover; border: 1px solid var(--border); }
+  .small-link { font-size:12px; color: var(--accent); cursor: pointer; }
+  .small-link:hover { text-decoration: underline; }
+  details > summary { cursor: pointer; }
+  .drag-handle { cursor: grab; color: var(--muted); }
+  .scrollarea { max-height: calc(100vh - 220px); overflow-y: auto; padding-right: 6px; }
+  .scrollarea::-webkit-scrollbar { width: 8px; }
+  .scrollarea::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; }
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<section id="loginView" class="min-h-screen flex items-center justify-center p-6">
+  <form id="loginForm" class="card p-8 w-full max-w-md">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500 text-white font-bold">CMS</span>
+      <div>
+        <div class="text-xl font-bold">Portfolio Admin</div>
+        <div class="text-xs" style="color:var(--muted)">Sign in to manage content</div>
+      </div>
+    </div>
+    <div class="space-y-3">
+      <div>
+        <label>Username</label>
+        <input id="loginUser" type="text" autocomplete="username" required value="admin" />
+      </div>
+      <div>
+        <label>Password</label>
+        <input id="loginPass" type="password" autocomplete="current-password" required />
+      </div>
+      <button type="submit" class="btn btn-primary w-full justify-center">Sign in</button>
+      <p id="loginError" class="text-sm text-red-500 hidden">Invalid credentials.</p>
+      <p class="text-xs mt-3" style="color:var(--muted)">
+        Default credentials: <code class="font-mono">admin / admin123</code>. Change them in <b>Settings</b> after login.
+      </p>
+    </div>
+  </form>
+</section>
+
+<!-- ============ DASHBOARD ============ -->
+<section id="dashView" class="hidden min-h-screen">
+
+  <div class="toolbar px-4 sm:px-8 py-3 flex items-center justify-between gap-3 flex-wrap">
+    <div class="flex items-center gap-3">
+      <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-500 text-white font-bold text-xs">CMS</span>
+      <div>
+        <div class="font-semibold leading-tight">Portfolio Admin</div>
+        <div class="text-xs" style="color:var(--muted)">Edits save automatically · Export to publish</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-2 flex-wrap">
+      <a href="index.html" target="_blank" class="btn btn-ghost">↗ Preview site</a>
+      <button id="exportAll" class="btn btn-success">⬇ Export all JSON</button>
+      <button id="resetAll"  class="btn btn-ghost">↺ Reset</button>
+      <button id="logoutBtn" class="btn btn-ghost">Sign out</button>
+    </div>
+  </div>
+
+  <div class="px-4 sm:px-8 py-6 grid grid-cols-12 gap-6">
+
+    <!-- Sidebar -->
+    <aside class="col-span-12 lg:col-span-3">
+      <nav id="tabNav" class="card p-3 space-y-1 sticky top-24"></nav>
+      <div class="mt-4 card p-4 text-xs" style="color:var(--muted)">
+        <div class="font-semibold mb-2" style="color:var(--fg)">Publishing workflow</div>
+        Edits save instantly to your browser. Click <b>Export all JSON</b> to download the updated files, then commit them to your <code>data/</code> folder on GitHub. The site refreshes for everyone within ~1 minute.
+      </div>
+    </aside>
+
+    <!-- Main panel -->
+    <main class="col-span-12 lg:col-span-9">
+      <div id="panes" class="space-y-6"></div>
+    </main>
+  </div>
+</section>
+
+<div id="toast" class="toast">Saved</div>
+
+<!-- ============ APP ============ -->
+<script>
+/* ============================================================
+   Admin app — pure client side. Stores edits in localStorage,
+   exports JSON files for committing to a GitHub Pages repo.
+   ============================================================ */
+
+const LS = {
+  site:'pf_site', projects:'pf_projects', testimonials:'pf_testimonials',
+  creds:'pf_admin_creds', authed:'pf_admin_authed'
+};
+const DEFAULT_CREDS = { username:'admin', password:'admin123' };
+const FILES = {
+  site:'data/site.json', projects:'data/projects.json', testimonials:'data/testimonials.json'
+};
+
+const COLORS = ['indigo','fuchsia','cyan','emerald','amber','rose'];
+const ACCENTS = [
+  'from-indigo-500 to-fuchsia-500',
+  'from-fuchsia-500 to-violet-500',
+  'from-cyan-500 to-emerald-500',
+  'from-emerald-500 to-cyan-500',
+  'from-amber-500 to-rose-500',
+  'from-rose-500 to-amber-500',
+  'from-violet-500 to-indigo-500',
+  'from-cyan-500 to-blue-500',
+];
+
+let state = { site:null, projects:null, testimonials:null };
+
+/* ----- Toast ----- */
+function toast(msg, kind='ok') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.style.background = kind === 'error' ? '#ef4444' : kind === 'warn' ? '#f59e0b' : '#0f172a';
+  el.classList.add('show');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(()=>el.classList.remove('show'), 1800);
+}
+
+/* ----- Auth ----- */
+function getCreds() {
+  try { return JSON.parse(localStorage.getItem(LS.creds)) || DEFAULT_CREDS; }
+  catch { return DEFAULT_CREDS; }
+}
+function setCreds(c) { localStorage.setItem(LS.creds, JSON.stringify(c)); }
+function isAuthed() { return sessionStorage.getItem(LS.authed) === '1'; }
+function setAuthed(v) { v ? sessionStorage.setItem(LS.authed,'1') : sessionStorage.removeItem(LS.authed); }
+
+document.getElementById('loginForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  const c = getCreds();
+  if (u === c.username && p === c.password) {
+    setAuthed(true); showDashboard();
+  } else {
+    document.getElementById('loginError').classList.remove('hidden');
+  }
+});
+document.getElementById('logoutBtn').addEventListener('click', () => { setAuthed(false); location.reload(); });
+
+/* ----- Boot ----- */
+async function loadInitial() {
+  // Read overrides from localStorage; if absent, fetch the files shipped with the repo.
+  async function load(key, file) {
+    const ls = localStorage.getItem(key);
+    if (ls) { try { return JSON.parse(ls); } catch {} }
+    try {
+      const r = await fetch(file, { cache:'no-store' });
+      if (r.ok) return await r.json();
+    } catch {}
+    return null;
+  }
+  state.site         = await load(LS.site,         FILES.site)         || emptySite();
+  state.projects     = await load(LS.projects,     FILES.projects)     || { projects: [] };
+  state.testimonials = await load(LS.testimonials, FILES.testimonials) || { testimonials: [] };
+}
+
+function emptySite() {
+  return {
+    personal: { name:'', shortName:'', initials:'', title:'', tagline:'', location:'', rate:'', experience:'', metaDescription:'', metaKeywords:'' },
+    availability: { show:true, text:'' },
+    hero: { headlineLine1:'', headlineLine2:'', headlineGradient:'', headlineLine3:'.', subtitle:'', primaryCtaText:'Hire Me', primaryCtaLink:'#contact', secondaryCtaText:'View Work', secondaryCtaLink:'#work' },
+    stats: [], trustedBy: [],
+    about: { heading:'', description:'', highlights:[], infoCards:[] },
+    skills: [], services: [], process: [],
+    contact: { heading:"Let's talk.", subtitle:'', email:'', phone:'', whatsapp:'', timezone:'', social:{ github:'', linkedin:'', twitter:'', upwork:'', website:'' } },
+    footer: { tagline:'' }
+  };
+}
+
+/* ----- Persistence ----- */
+function saveAll(silent=false) {
+  localStorage.setItem(LS.site, JSON.stringify(state.site));
+  localStorage.setItem(LS.projects, JSON.stringify(state.projects));
+  localStorage.setItem(LS.testimonials, JSON.stringify(state.testimonials));
+  if (!silent) toast('Saved');
+}
+
+function debounce(fn, ms=400) { let t; return (...a) => { clearTimeout(t); t = setTimeout(()=>fn(...a), ms); }; }
+const debouncedSave = debounce(() => saveAll(true), 350);
+
+/* ----- Tabs ----- */
+const TABS = [
+  { id:'profile',     label:'Profile' },
+  { id:'hero',        label:'Hero & headline' },
+  { id:'stats',       label:'Stats' },
+  { id:'trustedby',   label:'Recognised for' },
+  { id:'about',       label:'About' },
+  { id:'skills',      label:'Skills' },
+  { id:'projects',    label:'Projects' },
+  { id:'services',    label:'Services' },
+  { id:'process',     label:'Process' },
+  { id:'testimonials',label:'Testimonials' },
+  { id:'contact',     label:'Contact' },
+  { id:'footer',      label:'Footer' },
+  { id:'settings',    label:'Settings' },
+];
+let activeTab = 'profile';
+
+function renderTabs() {
+  const counts = {
+    stats: state.site.stats?.length || 0,
+    trustedby: state.site.trustedBy?.length || 0,
+    skills: state.site.skills?.length || 0,
+    projects: state.projects.projects?.length || 0,
+    services: state.site.services?.length || 0,
+    process: state.site.process?.length || 0,
+    testimonials: state.testimonials.testimonials?.length || 0,
+  };
+  const nav = document.getElementById('tabNav');
+  nav.innerHTML = TABS.map(t => `
+    <button class="tab-btn w-full ${t.id===activeTab?'active':''}" data-tab="${t.id}">
+      <span class="flex-1 text-left">${t.label}</span>
+      ${counts[t.id]!=null ? `<span class="badge">${counts[t.id]}</span>` : ''}
+    </button>
+  `).join('');
+  nav.querySelectorAll('[data-tab]').forEach(b => {
+    b.onclick = () => { activeTab = b.dataset.tab; renderAll(); window.scrollTo({top:0, behavior:'smooth'}); };
+  });
+}
+
+function renderAll() {
+  renderTabs();
+  const panes = document.getElementById('panes');
+  panes.innerHTML = '';
+  switch (activeTab) {
+    case 'profile':      panes.append(renderProfile()); break;
+    case 'hero':         panes.append(renderHero()); break;
+    case 'stats':        panes.append(renderStats()); break;
+    case 'trustedby':    panes.append(renderTrustedBy()); break;
+    case 'about':        panes.append(renderAbout()); break;
+    case 'skills':       panes.append(renderSkills()); break;
+    case 'projects':     panes.append(renderProjects()); break;
+    case 'services':     panes.append(renderServices()); break;
+    case 'process':      panes.append(renderProcess()); break;
+    case 'testimonials': panes.append(renderTestimonials()); break;
+    case 'contact':      panes.append(renderContact()); break;
+    case 'footer':       panes.append(renderFooter()); break;
+    case 'settings':     panes.append(renderSettings()); break;
+  }
+}
+
+/* ===========================================================
+   Helpers — generic field builders
+   =========================================================== */
+function h(tag, attrs={}, ...children) {
+  const el = document.createElement(tag);
+  for (const k in attrs) {
+    if (k === 'class') el.className = attrs[k];
+    else if (k === 'html') el.innerHTML = attrs[k];
+    else if (k.startsWith('on') && typeof attrs[k] === 'function') el.addEventListener(k.slice(2).toLowerCase(), attrs[k]);
+    else if (attrs[k] === true) el.setAttribute(k, '');
+    else if (attrs[k] != null && attrs[k] !== false) el.setAttribute(k, attrs[k]);
+  }
+  for (const c of children.flat()) {
+    if (c == null || c === false) continue;
+    el.append(c.nodeType ? c : document.createTextNode(String(c)));
+  }
+  return el;
+}
+function field(labelText, input) {
+  return h('div', {}, h('label', {}, labelText), input);
+}
+function textInput(value, onInput, opts={}) {
+  const el = h('input', { type: opts.type || 'text', value: value ?? '', placeholder: opts.placeholder || '' });
+  el.addEventListener('input', () => { onInput(el.value); debouncedSave(); });
+  return el;
+}
+function textArea(value, onInput, rows=3) {
+  const el = h('textarea', { rows });
+  el.value = value ?? '';
+  el.addEventListener('input', () => { onInput(el.value); debouncedSave(); });
+  return el;
+}
+function selectInput(value, options, onChange) {
+  const sel = h('select', {});
+  options.forEach(o => {
+    const opt = h('option', { value: o.value });
+    opt.textContent = o.label;
+    if (o.value === value) opt.selected = true;
+    sel.append(opt);
+  });
+  sel.addEventListener('change', () => { onChange(sel.value); debouncedSave(); });
+  return sel;
+}
+function checkbox(checked, onChange, labelText) {
+  const cb = h('input', { type:'checkbox' });
+  cb.checked = !!checked; cb.style.width = 'auto'; cb.style.marginRight = '8px';
+  cb.addEventListener('change', () => { onChange(cb.checked); debouncedSave(); });
+  return h('label', { class:'flex items-center', style:'text-transform:none; letter-spacing:normal; font-size:14px; color:var(--fg); font-weight:500; margin-bottom:0' }, cb, labelText);
+}
+function colorSelect(value, onChange) {
+  return selectInput(value || 'indigo', COLORS.map(c => ({ value:c, label:c })), onChange);
+}
+function accentSelect(value, onChange) {
+  return selectInput(value || ACCENTS[0], ACCENTS.map(a => ({ value:a, label:a })), onChange);
+}
+function imageUpload(currentSrc, onChange, removeable=true) {
+  const wrap = h('div', { class:'flex items-center gap-3' });
+  const img = h('img', { class:'img-preview', src: currentSrc || pixel() });
+  const fileInput = h('input', { type:'file', accept:'image/*', style:'width:auto' });
+  const removeBtn = h('button', { type:'button', class:'small-link' }, 'Remove');
+  fileInput.addEventListener('change', async () => {
+    const f = fileInput.files[0]; if (!f) return;
+    if (f.size > 1.5 * 1024 * 1024) { toast('Image too large (max 1.5MB)', 'warn'); fileInput.value=''; return; }
+    const dataUrl = await fileToDataUrl(f);
+    img.src = dataUrl;
+    onChange(dataUrl); debouncedSave();
+  });
+  removeBtn.addEventListener('click', () => { img.src = pixel(); onChange(''); debouncedSave(); });
+  wrap.append(img, h('div', { class:'flex-1' }, fileInput, removeable ? h('div', { class:'mt-1' }, removeBtn) : null));
+  return wrap;
+}
+function pixel() { return 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="84" height="84"><rect width="84" height="84" fill="%23e5e7eb"/><text x="50%" y="55%" text-anchor="middle" font-size="11" fill="%2364748b" font-family="Inter">No image</text></svg>'; }
+function fileToDataUrl(f) { return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(f); }); }
+
+function listToolbar(addLabel, onAdd) {
+  return h('div', { class:'flex items-center justify-between mb-4' },
+    h('div', { class:'text-sm', style:'color:var(--muted)' }, 'Add, edit or remove items below.'),
+    h('button', { class:'btn btn-primary', type:'button', onclick: () => { onAdd(); debouncedSave(); renderAll(); } }, '+ ' + addLabel)
+  );
+}
+function rowControls(onUp, onDown, onRemove) {
+  return h('div', { class:'flex items-center gap-2 ml-2' },
+    h('button', { class:'btn btn-ghost', type:'button', title:'Move up',   onclick: onUp },     '↑'),
+    h('button', { class:'btn btn-ghost', type:'button', title:'Move down', onclick: onDown },   '↓'),
+    h('button', { class:'btn btn-danger',type:'button', title:'Remove',    onclick: onRemove }, '✕')
+  );
+}
+function moveItem(arr, i, dir) {
+  const j = i + dir;
+  if (j < 0 || j >= arr.length) return;
+  [arr[i], arr[j]] = [arr[j], arr[i]];
+}
+
+/* ===========================================================
+   PANES
+   =========================================================== */
+
+function paneShell(title, subtitle, ...children) {
+  return h('section', { class:'card p-6' },
+    h('div', { class:'mb-5' },
+      h('h2', { class:'text-xl font-bold' }, title),
+      subtitle ? h('p', { class:'text-sm', style:'color:var(--muted)' }, subtitle) : null
+    ),
+    h('div', { class:'space-y-4' }, ...children)
+  );
+}
+
+function renderProfile() {
+  const p = state.site.personal;
+  return paneShell('Profile & SEO', 'Your name, title and search engine metadata.',
+    h('div', { class:'grid-2' },
+      field('Full name',      textInput(p.name,      v => p.name = v)),
+      field('Initials (logo)',textInput(p.initials,  v => p.initials = v, { placeholder:'SA' })),
+    ),
+    field('Title / role',     textInput(p.title,     v => p.title = v, { placeholder:'Full Stack Developer | iOS | …' })),
+    field('Short tagline',    textInput(p.tagline,   v => p.tagline = v)),
+    h('div', { class:'grid-3' },
+      field('Location',       textInput(p.location, v => p.location = v)),
+      field('Hourly rate',    textInput(p.rate,     v => p.rate = v)),
+      field('Years experience', textInput(p.experience, v => p.experience = v)),
+    ),
+    field('Meta description (SEO)', textArea(p.metaDescription, v => p.metaDescription = v, 2)),
+    field('Meta keywords (SEO)',    textInput(p.metaKeywords, v => p.metaKeywords = v))
+  );
+}
+
+function renderHero() {
+  const h0 = state.site.hero;
+  const a  = state.site.availability;
+  return paneShell('Hero & headline', 'The first thing visitors see.',
+    h('div', { class:'card p-4', style:'background:var(--bg)' },
+      h('div', { class:'flex items-center justify-between' },
+        h('div', {},
+          h('div', { class:'font-semibold' }, 'Availability pill'),
+          h('div', { class:'text-xs', style:'color:var(--muted)' }, 'The green dot at the top of your homepage')
+        ),
+        checkbox(a.show !== false, v => a.show = v, 'Show pill')
+      ),
+      h('div', { class:'mt-3' }, field('Pill text', textInput(a.text, v => a.text = v)))
+    ),
+    h('div', { class:'grid-3' },
+      field('Headline part 1',         textInput(h0.headlineLine1, v => h0.headlineLine1 = v)),
+      field('Headline part 2',         textInput(h0.headlineLine2, v => h0.headlineLine2 = v)),
+      field('Gradient highlight word', textInput(h0.headlineGradient, v => h0.headlineGradient = v)),
+    ),
+    field('Trailing punctuation',     textInput(h0.headlineLine3, v => h0.headlineLine3 = v, { placeholder:'.' })),
+    field('Subtitle / intro',         textArea(h0.subtitle, v => h0.subtitle = v, 4)),
+    h('div', { class:'grid-2' },
+      field('Primary button text',    textInput(h0.primaryCtaText, v => h0.primaryCtaText = v)),
+      field('Primary button link',    textInput(h0.primaryCtaLink, v => h0.primaryCtaLink = v)),
+    ),
+    h('div', { class:'grid-2' },
+      field('Secondary button text',  textInput(h0.secondaryCtaText, v => h0.secondaryCtaText = v)),
+      field('Secondary button link',  textInput(h0.secondaryCtaLink, v => h0.secondaryCtaLink = v)),
+    )
+  );
+}
+
+function renderStats() {
+  const arr = state.site.stats;
+  const list = h('div', { class:'space-y-3' });
+  arr.forEach((s, i) => {
+    list.append(
+      h('div', { class:'row-card' },
+        h('div', { class:'flex items-start justify-between gap-3' },
+          h('div', { class:'grid-2 flex-1' },
+            field('Value', textInput(s.value, v => s.value = v)),
+            field('Label', textInput(s.label, v => s.label = v)),
+          ),
+          rowControls(
+            () => { moveItem(arr, i, -1); debouncedSave(); renderAll(); },
+            () => { moveItem(arr, i, +1); debouncedSave(); renderAll(); },
+            () => { arr.splice(i,1); debouncedSave(); renderAll(); }
+          )
+        )
+      )
+    );
+  });
+  return paneShell('Stats', 'Numbers shown next to your hero. Hidden completely if you remove them all.',
+    listToolbar('Add stat', () => arr.push({ value:'', label:'' })),
+    list
+  );
+}
+
+function renderTrustedBy() {
+  const arr = state.site.trustedBy;
+  const list = h('div', { class:'space-y-2' });
+  arr.forEach((t, i) => {
+    list.append(
+      h('div', { class:'row-card flex items-center gap-3' },
+        textInput(t, v => arr[i] = v, { placeholder:'e.g. Upwork Top Rated' }),
+        rowControls(
+          () => { moveItem(arr, i, -1); debouncedSave(); renderAll(); },
+          () => { moveItem(arr, i, +1); debouncedSave(); renderAll(); },
+          () => { arr.splice(i,1); debouncedSave(); renderAll(); }
+        )
+      )
+    );
+  });
+  return paneShell('Recognised for', 'Achievements / badges shown in the marquee. Section is hidden if empty.',
+    listToolbar('Add item', () => arr.push('')),
+    list
+  );
+}
+
+function renderAbout() {
+  const a = state.site.about;
+  // highlights
+  const hlList = h('div', { class:'space-y-2' });
+  (a.highlights || []).forEach((hl, i) => {
+    hlList.append(h('div', { class:'row-card flex items-start gap-3' },
+      h('div', { class:'flex-1 grid-2' },
+        field('Title (bold prefix)', textInput(hl.title, v => hl.title = v)),
+        field('Color', colorSelect(hl.color, v => hl.color = v)),
+        field('Text', textInput(hl.text, v => hl.text = v))
+      ),
+      rowControls(
+        () => { moveItem(a.highlights, i, -1); debouncedSave(); renderAll(); },
+        () => { moveItem(a.highlights, i, +1); debouncedSave(); renderAll(); },
+        () => { a.highlights.splice(i,1); debouncedSave(); renderAll(); }
+      )
+    ));
+  });
+  // info cards
+  const cardsList = h('div', { class:'space-y-2' });
+  (a.infoCards || []).forEach((c, i) => {
+    cardsList.append(h('div', { class:'row-card flex items-start gap-3' },
+      h('div', { class:'flex-1' },
+        h('div', { class:'grid-2' },
+          field('Label', textInput(c.label, v => c.label = v)),
+          field('Value', textInput(c.value, v => c.value = v)),
+        ),
+        h('div', { class:'mt-2' }, checkbox(!!c.wide, v => c.wide = v, 'Full-width (spans two columns)'))
+      ),
+      rowControls(
+        () => { moveItem(a.infoCards, i, -1); debouncedSave(); renderAll(); },
+        () => { moveItem(a.infoCards, i, +1); debouncedSave(); renderAll(); },
+        () => { a.infoCards.splice(i,1); debouncedSave(); renderAll(); }
+      )
+    ));
+  });
+
+  return paneShell('About', 'Headline, narrative paragraph, highlights and info cards.',
+    field('Heading', textInput(a.heading, v => a.heading = v)),
+    field('Description', textArea(a.description, v => a.description = v, 5)),
+    h('div', {},
+      h('div', { class:'flex items-center justify-between mb-2' },
+        h('h3', { class:'font-semibold' }, 'Highlights'),
+        h('button', { class:'btn btn-primary', type:'button', onclick: () => { (a.highlights ||= []).push({ title:'', text:'', color:'indigo' }); debouncedSave(); renderAll(); } }, '+ Add highlight')
+      ),
+      hlList
+    ),
+    h('div', { class:'mt-4' },
+      h('div', { class:'flex items-center justify-between mb-2' },
+        h('h3', { class:'font-semibold' }, 'Info cards'),
+        h('button', { class:'btn btn-primary', type:'button', onclick: () => { (a.infoCards ||= []).push({ label:'', value:'', wide:false }); debouncedSave(); renderAll(); } }, '+ Add card')
+      ),
+      cardsList
+    )
+  );
+}
+
+function renderSkills() {
+  const arr = state.site.skills;
+  const list = h('div', { class:'space-y-3' });
+  arr.forEach((s, i) => {
+    const tagsInput = textInput((s.tags||[]).join(', '), v => s.tags = v.split(',').map(t=>t.trim()).filter(Boolean), { placeholder:'Comma-separated' });
+    list.append(h('div', { class:'row-card' },
+      h('div', { class:'flex items-start justify-between gap-3' },
+        h('div', { class:'flex-1' },
+          h('div', { class:'grid-2' },
+            field('Title', textInput(s.title, v => s.title = v)),
+            field('Color', colorSelect(s.color, v => s.color = v)),
+          ),
+          field('Description', textArea(s.description, v => s.description = v, 2)),
+          field('Tags', tagsInput),
+        ),
+        rowControls(
+          () => { moveItem(arr, i, -1); debouncedSave(); renderAll(); },
+          () => { moveItem(arr, i, +1); debouncedSave(); renderAll(); },
+          () => { arr.splice(i,1); debouncedSave(); renderAll(); }
+        )
+      )
+    ));
+  });
+  return paneShell('Skills', 'Capability cards on the homepage.',
+    listToolbar('Add skill', () => arr.push({ title:'', color:'indigo', description:'', tags:[] })),
+    list
+  );
+}
+
+function renderProjects() {
+  const arr = state.projects.projects;
+  const list = h('div', { class:'space-y-4' });
+  arr.forEach((p, i) => {
+    const tagsInput = textInput((p.tags||[]).join(', '), v => p.tags = v.split(',').map(t=>t.trim()).filter(Boolean), { placeholder:'Swift, SwiftUI, …' });
+    list.append(h('div', { class:'row-card' },
+      h('div', { class:'flex items-start justify-between gap-3' },
+        h('div', { class:'flex-1 space-y-3' },
+          h('div', { class:'grid-2' },
+            field('Title', textInput(p.title, v => p.title = v)),
+            field('Role',  textInput(p.role,  v => p.role  = v)),
+          ),
+          field('Description', textArea(p.description, v => p.description = v, 3)),
+          field('Tags', tagsInput),
+          h('div', { class:'grid-3' },
+            field('External link (optional)', textInput(p.link, v => p.link = v, { placeholder:'https://…' })),
+            field('Year (optional)', textInput(p.year, v => p.year = v)),
+            field('Accent gradient', accentSelect(p.accent, v => p.accent = v)),
+          ),
+          h('div', {}, h('label', {}, 'Cover image (optional)'),
+            imageUpload(p.image, v => p.image = v))
+        ),
+        rowControls(
+          () => { moveItem(arr, i, -1); debouncedSave(); renderAll(); },
+          () => { moveItem(arr, i, +1); debouncedSave(); renderAll(); },
+          () => { arr.splice(i,1); debouncedSave(); renderAll(); }
+        )
+      )
+    ));
+  });
+  return paneShell('Projects', 'Cards in the Selected Work section. Section hides if empty.',
+    listToolbar('Add project', () => arr.push({ id:'p'+Date.now(), title:'', description:'', tags:[], role:'', image:'', accent: ACCENTS[arr.length % ACCENTS.length], link:'', year:'' })),
+    list
+  );
+}
+
+function renderServices() {
+  const arr = state.site.services;
+  const list = h('div', { class:'space-y-3' });
+  arr.forEach((s, i) => {
+    const itemsInput = textInput((s.items||[]).join(', '), v => s.items = v.split(',').map(t=>t.trim()).filter(Boolean), { placeholder:'Comma-separated bullets' });
+    list.append(h('div', { class:'row-card' },
+      h('div', { class:'flex items-start justify-between gap-3' },
+        h('div', { class:'flex-1' },
+          h('div', { class:'grid-3' },
+            field('Number', textInput(s.number, v => s.number = v, { placeholder:'01' })),
+            field('Title',  textInput(s.title,  v => s.title  = v)),
+            field('Color',  colorSelect(s.color, v => s.color = v)),
+          ),
+          field('Description', textArea(s.description, v => s.description = v, 2)),
+          field('Bullet items', itemsInput),
+        ),
+        rowControls(
+          () => { moveItem(arr, i, -1); debouncedSave(); renderAll(); },
+          () => { moveItem(arr, i, +1); debouncedSave(); renderAll(); },
+          () => { arr.splice(i,1); debouncedSave(); renderAll(); }
+        )
+      )
+    ));
+  });
+  return paneShell('Services', 'How-I-can-help cards.',
+    listToolbar('Add service', () => arr.push({ number: String(arr.length+1).padStart(2,'0'), title:'', description:'', items:[], color:'indigo' })),
+    list
+  );
+}
+
+function renderProcess() {
+  const arr = state.site.process;
+  const list = h('div', { class:'space-y-3' });
+  arr.forEach((s, i) => {
+    list.append(h('div', { class:'row-card' },
+      h('div', { class:'flex items-start justify-between gap-3' },
+        h('div', { class:'flex-1' },
+          h('div', { class:'grid-3' },
+            field('Step #', textInput(s.step, v => s.step = parseInt(v,10) || v, { type:'number' })),
+            field('Label',  textInput(s.label, v => s.label = v)),
+            field('Color',  colorSelect(s.color, v => s.color = v)),
+          ),
+          field('Title',       textInput(s.title, v => s.title = v)),
+          field('Description', textArea(s.description, v => s.description = v, 2)),
+        ),
+        rowControls(
+          () => { moveItem(arr, i, -1); debouncedSave(); renderAll(); },
+          () => { moveItem(arr, i, +1); debouncedSave(); renderAll(); },
+          () => { arr.splice(i,1); debouncedSave(); renderAll(); }
+        )
+      )
+    ));
+  });
+  return paneShell('Process', 'Your delivery process — typically 4 steps.',
+    listToolbar('Add step', () => arr.push({ step: arr.length + 1, label:'', title:'', description:'', color:'indigo' })),
+    list
+  );
+}
+
+function renderTestimonials() {
+  const arr = state.testimonials.testimonials;
+  const list = h('div', { class:'space-y-4' });
+  arr.forEach((t, i) => {
+    list.append(h('div', { class:'row-card' },
+      h('div', { class:'flex items-start justify-between gap-3' },
+        h('div', { class:'flex-1 space-y-3' },
+          h('div', { class:'grid-2' },
+            field('Client name',  textInput(t.name, v => t.name = v)),
+            field('Role / title', textInput(t.role, v => t.role = v)),
+          ),
+          field('Quote', textArea(t.quote, v => t.quote = v, 4)),
+          h('div', { class:'grid-3' },
+            field('Rating (1–5)', textInput(t.rating, v => t.rating = parseInt(v,10) || 5, { type:'number' })),
+            field('Accent gradient', accentSelect(t.accent, v => t.accent = v)),
+            field('—', h('span', { class:'text-xs', style:'color:var(--muted)' }, 'Image is optional. Falls back to the gradient.')),
+          ),
+          h('div', {}, h('label', {}, 'Avatar / photo (optional)'),
+            imageUpload(t.image, v => t.image = v))
+        ),
+        rowControls(
+          () => { moveItem(arr, i, -1); debouncedSave(); renderAll(); },
+          () => { moveItem(arr, i, +1); debouncedSave(); renderAll(); },
+          () => { arr.splice(i,1); debouncedSave(); renderAll(); }
+        )
+      )
+    ));
+  });
+  return paneShell('Testimonials', 'Customer reviews. Section is automatically hidden on the public site if you have zero testimonials.',
+    listToolbar('Add testimonial', () => arr.push({ id:'t'+Date.now(), name:'', role:'', quote:'', rating:5, image:'', accent: ACCENTS[arr.length % ACCENTS.length] })),
+    list
+  );
+}
+
+function renderContact() {
+  const c = state.site.contact;
+  const s = c.social ||= { github:'', linkedin:'', twitter:'', upwork:'', website:'' };
+  return paneShell('Contact', 'Email, phone, social links and timezone.',
+    field('Section heading',  textInput(c.heading, v => c.heading = v)),
+    field('Section subtitle', textArea(c.subtitle, v => c.subtitle = v, 2)),
+    h('div', { class:'grid-2' },
+      field('Email',     textInput(c.email,    v => c.email    = v, { type:'email', placeholder:'you@example.com' })),
+      field('Phone',     textInput(c.phone,    v => c.phone    = v, { placeholder:'+61 4 …' })),
+    ),
+    h('div', { class:'grid-2' },
+      field('WhatsApp (digits only)', textInput(c.whatsapp, v => c.whatsapp = v, { placeholder:'614…' })),
+      field('Time zone',              textInput(c.timezone, v => c.timezone = v, { placeholder:'Sydney, Australia (UTC+10)' })),
+    ),
+    h('h3', { class:'font-semibold mt-2' }, 'Social links'),
+    h('p', { class:'text-xs', style:'color:var(--muted); margin-top:-8px' }, 'Leave blank to hide that icon. Footer hides empty social links automatically.'),
+    h('div', { class:'grid-2' },
+      field('GitHub',   textInput(s.github,   v => s.github   = v, { placeholder:'https://github.com/…' })),
+      field('LinkedIn', textInput(s.linkedin, v => s.linkedin = v, { placeholder:'https://linkedin.com/in/…' })),
+    ),
+    h('div', { class:'grid-2' },
+      field('X / Twitter', textInput(s.twitter, v => s.twitter = v, { placeholder:'https://x.com/…' })),
+      field('Upwork',      textInput(s.upwork,  v => s.upwork  = v, { placeholder:'https://upwork.com/…' })),
+    ),
+    field('Website', textInput(s.website, v => s.website = v, { placeholder:'https://astapor.com.au' }))
+  );
+}
+
+function renderFooter() {
+  const f = state.site.footer ||= { tagline:'' };
+  return paneShell('Footer', 'Tiny tagline at the very bottom of the page.',
+    field('Tagline', textInput(f.tagline, v => f.tagline = v))
+  );
+}
+
+/* ----- Settings (creds + import/export/reset) ----- */
+function renderSettings() {
+  const c = getCreds();
+  const newPass = { value:'' }, confirmPass = { value:'' }, newUser = { value: c.username };
+
+  function exportFile(filename, obj) {
+    const blob = new Blob([JSON.stringify(obj, null, 2)], { type:'application/json' });
+    const a = h('a', { href: URL.createObjectURL(blob), download: filename });
+    document.body.append(a); a.click(); a.remove();
+  }
+  function importFile(target, fileInput) {
+    const f = fileInput.files[0]; if (!f) return;
+    const r = new FileReader();
+    r.onload = () => {
+      try {
+        const obj = JSON.parse(r.result);
+        state[target] = obj; saveAll(true); renderAll(); toast('Imported ' + target);
+      } catch { toast('Invalid JSON file', 'error'); }
+    };
+    r.readAsText(f);
+  }
+  const importEl = (target) => {
+    const inp = h('input', { type:'file', accept:'application/json', style:'width:auto' });
+    inp.addEventListener('change', () => importFile(target, inp));
+    return inp;
+  };
+
+  return paneShell('Settings', 'Admin credentials and data management.',
+    h('div', { class:'card p-4', style:'background:var(--bg)' },
+      h('h3', { class:'font-semibold mb-3' }, 'Change admin credentials'),
+      h('div', { class:'grid-3' },
+        field('New username',     textInput(newUser.value, v => newUser.value = v)),
+        field('New password',     (() => { const i = h('input', { type:'password', placeholder:'Leave blank to keep current' }); i.addEventListener('input', () => newPass.value = i.value); return i; })()),
+        field('Confirm password', (() => { const i = h('input', { type:'password' }); i.addEventListener('input', () => confirmPass.value = i.value); return i; })()),
+      ),
+      h('button', { class:'btn btn-primary mt-3', type:'button', onclick: () => {
+        if (newPass.value && newPass.value !== confirmPass.value) return toast('Passwords do not match', 'error');
+        const next = { username: newUser.value || c.username, password: newPass.value || c.password };
+        setCreds(next); toast('Credentials updated');
+      }}, 'Save credentials')
+    ),
+    h('div', { class:'card p-4 mt-4', style:'background:var(--bg)' },
+      h('h3', { class:'font-semibold mb-3' }, 'Export JSON files'),
+      h('p', { class:'text-sm mb-3', style:'color:var(--muted)' }, 'Download the latest data and replace the files in your repo\'s `data/` folder, then commit and push to make changes live for everyone.'),
+      h('div', { class:'flex gap-2 flex-wrap' },
+        h('button', { class:'btn btn-success', type:'button', onclick: () => exportFile('site.json',         state.site)         }, '⬇ site.json'),
+        h('button', { class:'btn btn-success', type:'button', onclick: () => exportFile('projects.json',     state.projects)     }, '⬇ projects.json'),
+        h('button', { class:'btn btn-success', type:'button', onclick: () => exportFile('testimonials.json', state.testimonials) }, '⬇ testimonials.json'),
+      )
+    ),
+    h('div', { class:'card p-4 mt-4', style:'background:var(--bg)' },
+      h('h3', { class:'font-semibold mb-3' }, 'Import JSON files'),
+      h('p', { class:'text-sm mb-3', style:'color:var(--muted)' }, 'Restore a previous backup by loading a JSON file. Imported data overrides what you have in the editor.'),
+      h('div', { class:'grid-3' },
+        field('site.json',         importEl('site')),
+        field('projects.json',     importEl('projects')),
+        field('testimonials.json', importEl('testimonials')),
+      )
+    ),
+    h('div', { class:'card p-4 mt-4', style:'background:var(--bg)' },
+      h('h3', { class:'font-semibold mb-3' }, 'Danger zone'),
+      h('p', { class:'text-sm mb-3', style:'color:var(--muted)' }, 'Reset clears your local edits and reloads from the JSON files currently in the repo.'),
+      h('button', { class:'btn btn-danger', type:'button', onclick: async () => {
+        if (!confirm('Reset all local edits? This cannot be undone (unless you have an export backup).')) return;
+        localStorage.removeItem(LS.site); localStorage.removeItem(LS.projects); localStorage.removeItem(LS.testimonials);
+        await loadInitial(); renderAll(); toast('Reset done');
+      }}, 'Reset to repo defaults')
+    )
+  );
+}
+
+/* ----- Top toolbar actions ----- */
+document.getElementById('exportAll').addEventListener('click', () => {
+  function dl(name, obj) {
+    const blob = new Blob([JSON.stringify(obj, null, 2)], { type:'application/json' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.append(a); a.click(); a.remove();
+  }
+  dl('site.json', state.site);
+  dl('projects.json', state.projects);
+  dl('testimonials.json', state.testimonials);
+  toast('Exported 3 files');
+});
+document.getElementById('resetAll').addEventListener('click', async () => {
+  if (!confirm('Reset all local edits and reload from the JSON files in your repo?')) return;
+  localStorage.removeItem(LS.site); localStorage.removeItem(LS.projects); localStorage.removeItem(LS.testimonials);
+  await loadInitial(); renderAll(); toast('Reset done');
+});
+
+/* ----- Main ----- */
+async function showDashboard() {
+  document.getElementById('loginView').classList.add('hidden');
+  document.getElementById('dashView').classList.remove('hidden');
+  await loadInitial();
+  renderAll();
+}
+
+if (isAuthed()) showDashboard();
+</script>
+</body>
+</html>
