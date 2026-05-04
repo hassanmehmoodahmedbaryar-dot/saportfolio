@@ -650,9 +650,15 @@ function renderContact(site) {
   setBind('contactSubtitle', c.subtitle || '');
 
   const cards = [];
-  if (c.email)    cards.push(card('Email', c.email, `mailto:${c.email}`, 'indigo', 'mail'));
-  if (c.whatsapp) cards.push(card('WhatsApp', c.phone || c.whatsapp, `https://wa.me/${String(c.whatsapp).replace(/[^\d]/g,'')}`, 'emerald', 'whatsapp'));
-  else if (c.phone) cards.push(card('Phone', c.phone, `tel:${String(c.phone).replace(/[^\d+]/g,'')}`, 'emerald', 'phone'));
+  if (c.email) cards.push(card('Email', c.email, `mailto:${c.email}`, 'indigo', 'mail'));
+  // Phone + WhatsApp combined: tap-to-WhatsApp on mobile, opens WhatsApp Web on desktop.
+  if (c.phone && c.whatsapp) {
+    cards.push(card('Phone · WhatsApp', c.phone, `https://wa.me/${String(c.whatsapp).replace(/[^\d]/g,'')}`, 'emerald', 'whatsapp'));
+  } else if (c.whatsapp) {
+    cards.push(card('WhatsApp', c.whatsapp, `https://wa.me/${String(c.whatsapp).replace(/[^\d]/g,'')}`, 'emerald', 'whatsapp'));
+  } else if (c.phone) {
+    cards.push(card('Phone', c.phone, `tel:${String(c.phone).replace(/[^\d+]/g,'')}`, 'emerald', 'phone'));
+  }
   if (c.timezone) cards.push(card('Time zone', c.timezone, null, 'amber', 'clock'));
   document.getElementById('contactCards').innerHTML = cards.join('');
 
