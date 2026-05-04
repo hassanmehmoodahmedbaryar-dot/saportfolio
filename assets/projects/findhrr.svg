@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4c1d95"/>
+      <stop offset="50%" stop-color="#a21caf"/>
+      <stop offset="100%" stop-color="#db2777"/>
+    </linearGradient>
+    <linearGradient id="card1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fce7f3"/>
+      <stop offset="100%" stop-color="#fbcfe8"/>
+    </linearGradient>
+    <linearGradient id="avatar1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f472b6"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="avatar2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="avatar3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fb7185"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="rainbow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="20%" stop-color="#f97316"/>
+      <stop offset="40%" stop-color="#eab308"/>
+      <stop offset="60%" stop-color="#22c55e"/>
+      <stop offset="80%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <!-- Decorative blobs -->
+  <circle cx="120" cy="100" r="180" fill="#ec4899" opacity=".3"/>
+  <circle cx="700" cy="420" r="200" fill="#8b5cf6" opacity=".3"/>
+  <circle cx="600" cy="80" r="60" fill="#fff" opacity=".05"/>
+
+  <!-- Top header -->
+  <text x="40" y="62" fill="#fff" font-family="Inter, sans-serif" font-size="36" font-weight="900" letter-spacing="-1">FindHrr</text>
+  <text x="40" y="86" fill="rgba(255,255,255,.85)" font-family="Inter, sans-serif" font-size="14" font-weight="500">Lesbian, Queer &amp; Bisexual Network</text>
+
+  <!-- Heart logo -->
+  <g transform="translate(680, 38)">
+    <rect x="0" y="0" width="64" height="64" rx="16" fill="#fff"/>
+    <path d="M32 50 C 16 38, 12 26, 20 18 C 26 12, 32 16, 32 22 C 32 16, 38 12, 44 18 C 52 26, 48 38, 32 50 Z" fill="url(#rainbow)"/>
+  </g>
+
+  <!-- Discover header -->
+  <text x="40" y="138" fill="rgba(255,255,255,.95)" font-family="Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="2">DISCOVER NEAR YOU</text>
+
+  <!-- Profile cards -->
+  <g transform="translate(40, 156)">
+    <rect width="232" height="280" rx="20" fill="url(#card1)"/>
+    <!-- avatar -->
+    <circle cx="116" cy="100" r="56" fill="url(#avatar1)"/>
+    <text x="116" y="110" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="32" font-weight="800">A</text>
+    <text x="116" y="190" text-anchor="middle" fill="#831843" font-family="Inter, sans-serif" font-size="18" font-weight="700">Alex, 26</text>
+    <text x="116" y="212" text-anchor="middle" fill="#9d174d" font-family="Inter, sans-serif" font-size="12" font-weight="500">2 km · London</text>
+    <!-- pills -->
+    <rect x="36" y="226" width="68" height="22" rx="11" fill="#ec4899" opacity=".15"/>
+    <text x="70" y="241" text-anchor="middle" fill="#9d174d" font-family="Inter, sans-serif" font-size="10" font-weight="700">Photography</text>
+    <rect x="118" y="226" width="78" height="22" rx="11" fill="#a855f7" opacity=".15"/>
+    <text x="157" y="241" text-anchor="middle" fill="#6b21a8" font-family="Inter, sans-serif" font-size="10" font-weight="700">She / Her</text>
+  </g>
+
+  <g transform="translate(284, 156)">
+    <rect width="232" height="280" rx="20" fill="#fff"/>
+    <circle cx="116" cy="100" r="56" fill="url(#avatar2)"/>
+    <text x="116" y="110" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="32" font-weight="800">M</text>
+    <text x="116" y="190" text-anchor="middle" fill="#3b0764" font-family="Inter, sans-serif" font-size="18" font-weight="700">Morgan, 29</text>
+    <text x="116" y="212" text-anchor="middle" fill="#6b21a8" font-family="Inter, sans-serif" font-size="12" font-weight="500">5 km · Manchester</text>
+    <rect x="46" y="226" width="64" height="22" rx="11" fill="#a855f7" opacity=".15"/>
+    <text x="78" y="241" text-anchor="middle" fill="#6b21a8" font-family="Inter, sans-serif" font-size="10" font-weight="700">Designer</text>
+    <rect x="124" y="226" width="62" height="22" rx="11" fill="#3b82f6" opacity=".15"/>
+    <text x="155" y="241" text-anchor="middle" fill="#1e3a8a" font-family="Inter, sans-serif" font-size="10" font-weight="700">They/Them</text>
+  </g>
+
+  <g transform="translate(528, 156)">
+    <rect width="232" height="280" rx="20" fill="url(#card1)"/>
+    <circle cx="116" cy="100" r="56" fill="url(#avatar3)"/>
+    <text x="116" y="110" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="32" font-weight="800">S</text>
+    <text x="116" y="190" text-anchor="middle" fill="#831843" font-family="Inter, sans-serif" font-size="18" font-weight="700">Sam, 24</text>
+    <text x="116" y="212" text-anchor="middle" fill="#9d174d" font-family="Inter, sans-serif" font-size="12" font-weight="500">8 km · Brighton</text>
+    <rect x="40" y="226" width="60" height="22" rx="11" fill="#f97316" opacity=".18"/>
+    <text x="70" y="241" text-anchor="middle" fill="#9a3412" font-family="Inter, sans-serif" font-size="10" font-weight="700">Climber</text>
+    <rect x="114" y="226" width="86" height="22" rx="11" fill="#ec4899" opacity=".15"/>
+    <text x="157" y="241" text-anchor="middle" fill="#9d174d" font-family="Inter, sans-serif" font-size="10" font-weight="700">She / Her</text>
+  </g>
+
+  <!-- Bottom action bar -->
+  <g transform="translate(40, 458)">
+    <rect width="720" height="22" rx="11" fill="rgba(255,255,255,.18)"/>
+    <text x="360" y="16" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="11" font-weight="600" letter-spacing="1.5">SWIPE · MATCH · CONNECT</text>
+  </g>
+</svg>

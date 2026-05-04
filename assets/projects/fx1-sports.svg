@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a0a14"/>
+      <stop offset="50%" stop-color="#3a0a1c"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="phone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c1c1e"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <!-- Background glow -->
+  <circle cx="650" cy="100" r="180" fill="#ef4444" opacity=".15"/>
+  <circle cx="120" cy="420" r="160" fill="#dc2626" opacity=".12"/>
+  <!-- UFC badge -->
+  <g transform="translate(40, 36)">
+    <rect width="64" height="26" rx="4" fill="#ef4444"/>
+    <text x="32" y="19" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="13" font-weight="900" letter-spacing="1.5">UFC</text>
+  </g>
+  <text x="120" y="55" fill="#fff" font-family="Inter, sans-serif" font-size="13" font-weight="600" letter-spacing="2">FIGHT NIGHT</text>
+  <text x="40" y="92" fill="#fff" font-family="Inter, sans-serif" font-size="22" font-weight="800">UFC Fight Night: Allen vs Curtis 2</text>
+  <text x="40" y="116" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="13" font-weight="500">Live · Round 2 · 02:18</text>
+  <!-- VS card -->
+  <g transform="translate(40, 140)">
+    <rect width="430" height="180" rx="20" fill="#18181b" stroke="rgba(239,68,68,.3)" stroke-width="1"/>
+    <!-- Fighter A -->
+    <circle cx="80" cy="90" r="42" fill="url(#red)"/>
+    <text x="80" y="98" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="22" font-weight="800">BA</text>
+    <text x="80" y="156" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="13" font-weight="700">Brendan Allen</text>
+    <text x="80" y="172" text-anchor="middle" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">23-5-0</text>
+    <!-- VS -->
+    <text x="215" y="86" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="32" font-weight="900">VS</text>
+    <text x="215" y="106" text-anchor="middle" fill="#ef4444" font-family="Inter, sans-serif" font-size="11" font-weight="700" letter-spacing="2">MAIN EVENT</text>
+    <rect x="170" y="120" width="90" height="22" rx="11" fill="rgba(239,68,68,.15)" stroke="#ef4444" stroke-width="1"/>
+    <text x="215" y="135" text-anchor="middle" fill="#ef4444" font-family="Inter, sans-serif" font-size="10" font-weight="700">MIDDLEWEIGHT</text>
+    <!-- Fighter B -->
+    <circle cx="350" cy="90" r="42" fill="url(#blue)"/>
+    <text x="350" y="98" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="22" font-weight="800">CC</text>
+    <text x="350" y="156" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="13" font-weight="700">Chris Curtis</text>
+    <text x="350" y="172" text-anchor="middle" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11">31-10-0</text>
+  </g>
+  <!-- Strike Analysis -->
+  <g transform="translate(495, 140)">
+    <rect width="265" height="180" rx="20" fill="#18181b" stroke="rgba(239,68,68,.3)" stroke-width="1"/>
+    <text x="20" y="32" fill="#fff" font-family="Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="1">STRIKE ANALYSIS</text>
+    <text x="245" y="32" text-anchor="end" fill="#10b981" font-family="Inter, sans-serif" font-size="10" font-weight="700">● LIVE</text>
+    <!-- Bars -->
+    <g font-family="Inter, sans-serif">
+      <text x="20" y="58" fill="#a1a1aa" font-size="10">Total strikes</text>
+      <rect x="20" y="64" width="225" height="6" rx="3" fill="#27272a"/>
+      <rect x="20" y="64" width="160" height="6" rx="3" fill="url(#red)"/>
+      <text x="20" y="92" fill="#a1a1aa" font-size="10">Significant strikes</text>
+      <rect x="20" y="98" width="225" height="6" rx="3" fill="#27272a"/>
+      <rect x="20" y="98" width="135" height="6" rx="3" fill="#f97316"/>
+      <text x="20" y="126" fill="#a1a1aa" font-size="10">Takedowns</text>
+      <rect x="20" y="132" width="225" height="6" rx="3" fill="#27272a"/>
+      <rect x="20" y="132" width="60" height="6" rx="3" fill="#8b5cf6"/>
+      <text x="20" y="160" fill="#a1a1aa" font-size="10">Control time</text>
+      <rect x="20" y="166" width="225" height="6" rx="3" fill="#27272a"/>
+      <rect x="20" y="166" width="195" height="6" rx="3" fill="#06b6d4"/>
+    </g>
+  </g>
+  <!-- Bottom score row -->
+  <g transform="translate(40, 348)">
+    <text fill="#a1a1aa" font-family="Inter, sans-serif" font-size="11" font-weight="600" letter-spacing="1.5">TODAY'S FIGHTS</text>
+  </g>
+  <g transform="translate(40, 372)" font-family="Inter, sans-serif">
+    <rect width="226" height="100" rx="14" fill="#18181b" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+    <text x="16" y="28" fill="#fff" font-size="11" font-weight="700">FEATHERWEIGHT</text>
+    <text x="16" y="56" fill="#fff" font-size="14" font-weight="700">A. Hernandez</text>
+    <text x="16" y="74" fill="#a1a1aa" font-size="11">14-7-0</text>
+    <text x="210" y="56" text-anchor="end" fill="#fff" font-size="14" font-weight="700">D. Jackson</text>
+    <text x="210" y="74" text-anchor="end" fill="#a1a1aa" font-size="11">22-6-1</text>
+    <rect x="16" y="80" width="194" height="12" rx="6" fill="#3b82f6"/>
+    <text x="113" y="89" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">DECISION</text>
+  </g>
+  <g transform="translate(287, 372)" font-family="Inter, sans-serif">
+    <rect width="226" height="100" rx="14" fill="#18181b" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+    <text x="16" y="28" fill="#fff" font-size="11" font-weight="700">LIGHTWEIGHT</text>
+    <text x="16" y="56" fill="#fff" font-size="14" font-weight="700">T. Peek</text>
+    <text x="16" y="74" fill="#a1a1aa" font-size="11">2-1-0</text>
+    <text x="210" y="56" text-anchor="end" fill="#fff" font-size="14" font-weight="700">C. Campbell</text>
+    <text x="210" y="74" text-anchor="end" fill="#a1a1aa" font-size="11">8-2-0</text>
+    <rect x="16" y="80" width="194" height="12" rx="6" fill="#10b981"/>
+    <text x="113" y="89" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">IN PROGRESS →</text>
+  </g>
+  <g transform="translate(534, 372)" font-family="Inter, sans-serif">
+    <rect width="226" height="100" rx="14" fill="#18181b" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+    <text x="16" y="28" fill="#fff" font-size="11" font-weight="700">WELTERWEIGHT</text>
+    <text x="16" y="56" fill="#fff" font-size="14" font-weight="700">L. Edwards</text>
+    <text x="16" y="74" fill="#a1a1aa" font-size="11">22-3-0</text>
+    <text x="210" y="56" text-anchor="end" fill="#fff" font-size="14" font-weight="700">C. Covington</text>
+    <text x="210" y="74" text-anchor="end" fill="#a1a1aa" font-size="11">17-4-0</text>
+    <rect x="16" y="80" width="194" height="12" rx="6" fill="#8b5cf6"/>
+    <text x="113" y="89" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">DECISION</text>
+  </g>
+</svg>

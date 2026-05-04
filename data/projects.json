@@ -6,7 +6,7 @@
       "description": "Real-time UFC fight statistics, trend analysis and winner predictions. Live strike analytics, fight schedules, results and detailed UFC fight night insights for MMA fans.",
       "tags": ["SwiftUI", "GraphQL", "Swift", "Alamofire", "Figma"],
       "role": "Senior iOS Engineer",
-      "image": "",
+      "image": "assets/projects/fx1-sports.svg",
       "accent": "from-rose-500 to-amber-500",
       "link": "",
       "year": "2024"
@@ -17,7 +17,7 @@
       "description": "FINDHRR — Lesbian, Queer and Bisexual Network. The most popular app for lesbian and queer women across the spectrum, launched worldwide on the App Store.",
       "tags": ["iOS", "Objective-C", "Swift", "Social Network"],
       "role": "iOS Developer",
-      "image": "",
+      "image": "assets/projects/findhrr.svg",
       "accent": "from-fuchsia-500 to-violet-500",
       "link": "https://itunes.apple.com/gb/app/findhrr/id586575577",
       "year": "2015"
@@ -28,7 +28,7 @@
       "description": "Mobile toolkit application for performing artists in the UK — bookings, schedules, invoicing and on-the-road tools in one place.",
       "tags": ["iOS", "Swift", "REST APIs"],
       "role": "iOS Developer",
-      "image": "",
+      "image": "assets/projects/artiste-toolkit.svg",
       "accent": "from-violet-500 to-indigo-500",
       "link": "",
       "year": ""
@@ -39,7 +39,7 @@
       "description": "Rewards-based video platform allowing users to earn while watching curated content. Native iOS implementation with secure rewards engine.",
       "tags": ["iOS", "Swift", "Video", "Rewards Engine"],
       "role": "iOS Developer",
-      "image": "",
+      "image": "assets/projects/video-rewards.svg",
       "accent": "from-cyan-500 to-blue-500",
       "link": "",
       "year": ""

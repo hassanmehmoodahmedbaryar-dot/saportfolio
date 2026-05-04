@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="bowler" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff"/>
+      <stop offset="100%" stop-color="#e5e7eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <!-- Decorative -->
+  <circle cx="700" cy="80" r="120" fill="#a855f7" opacity=".18"/>
+  <circle cx="80" cy="420" r="160" fill="#6366f1" opacity=".15"/>
+
+  <!-- Bowler hat icon -->
+  <g transform="translate(36, 32)">
+    <rect x="0" y="0" width="60" height="60" rx="14" fill="url(#purple)"/>
+    <!-- bowler hat -->
+    <ellipse cx="30" cy="42" rx="22" ry="3" fill="url(#bowler)"/>
+    <path d="M 14 42 Q 14 24, 30 22 Q 46 24, 46 42 Z" fill="url(#bowler)"/>
+  </g>
+  <text x="112" y="56" fill="#fff" font-family="Inter, sans-serif" font-size="22" font-weight="800">Artiste Toolkit</text>
+  <text x="112" y="80" fill="rgba(255,255,255,.6)" font-family="Inter, sans-serif" font-size="12" font-weight="500" letter-spacing="2">UK · TOUR &amp; BOOKINGS</text>
+
+  <!-- Stats row -->
+  <g transform="translate(40, 110)" font-family="Inter, sans-serif">
+    <rect width="170" height="76" rx="14" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.1)"/>
+    <text x="16" y="28" fill="rgba(255,255,255,.5)" font-size="11" font-weight="600" letter-spacing="1.5">THIS MONTH</text>
+    <text x="16" y="56" fill="#fff" font-size="22" font-weight="800">£12,840</text>
+    <text x="16" y="70" fill="#22c55e" font-size="10" font-weight="700">↑ 18%</text>
+
+    <g transform="translate(186, 0)">
+      <rect width="170" height="76" rx="14" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.1)"/>
+      <text x="16" y="28" fill="rgba(255,255,255,.5)" font-size="11" font-weight="600" letter-spacing="1.5">UPCOMING</text>
+      <text x="16" y="56" fill="#fff" font-size="22" font-weight="800">7 gigs</text>
+      <text x="16" y="70" fill="#a78bfa" font-size="10" font-weight="700">Next: 12 May</text>
+    </g>
+
+    <g transform="translate(372, 0)">
+      <rect width="170" height="76" rx="14" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.1)"/>
+      <text x="16" y="28" fill="rgba(255,255,255,.5)" font-size="11" font-weight="600" letter-spacing="1.5">VENUES</text>
+      <text x="16" y="56" fill="#fff" font-size="22" font-weight="800">14 active</text>
+      <text x="16" y="70" fill="#06b6d4" font-size="10" font-weight="700">UK &amp; EU</text>
+    </g>
+
+    <g transform="translate(558, 0)">
+      <rect width="160" height="76" rx="14" fill="url(#purple)"/>
+      <text x="16" y="28" fill="rgba(255,255,255,.85)" font-size="11" font-weight="600" letter-spacing="1.5">RATING</text>
+      <text x="16" y="56" fill="#fff" font-size="22" font-weight="800">4.9 / 5</text>
+      <text x="16" y="70" fill="rgba(255,255,255,.85)" font-size="10" font-weight="700">★★★★★ 213 reviews</text>
+    </g>
+  </g>
+
+  <!-- Tour dates -->
+  <text x="40" y="220" fill="rgba(255,255,255,.6)" font-family="Inter, sans-serif" font-size="12" font-weight="700" letter-spacing="2">UPCOMING TOUR DATES</text>
+  <g transform="translate(40, 234)" font-family="Inter, sans-serif">
+    <!-- Row 1 -->
+    <rect width="720" height="62" rx="12" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.08)"/>
+    <rect x="14" y="14" width="50" height="34" rx="8" fill="url(#purple)"/>
+    <text x="39" y="29" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="9" font-weight="700">MAY</text>
+    <text x="39" y="44" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">12</text>
+    <text x="80" y="30" fill="#fff" font-size="14" font-weight="700">O2 Academy Brixton</text>
+    <text x="80" y="48" fill="rgba(255,255,255,.6)" font-size="11">London · Doors 19:00 · 4,921 sold</text>
+    <rect x="612" y="20" width="92" height="22" rx="11" fill="#22c55e" opacity=".18"/>
+    <text x="658" y="35" text-anchor="middle" fill="#86efac" font-size="10" font-weight="700">SOLD OUT</text>
+
+    <!-- Row 2 -->
+    <g transform="translate(0, 74)">
+      <rect width="720" height="62" rx="12" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.08)"/>
+      <rect x="14" y="14" width="50" height="34" rx="8" fill="rgba(255,255,255,.1)"/>
+      <text x="39" y="29" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="9" font-weight="700">MAY</text>
+      <text x="39" y="44" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">19</text>
+      <text x="80" y="30" fill="#fff" font-size="14" font-weight="700">Albert Hall Manchester</text>
+      <text x="80" y="48" fill="rgba(255,255,255,.6)" font-size="11">Manchester · Doors 18:30 · 1,847 / 2,300</text>
+      <rect x="612" y="20" width="92" height="22" rx="11" fill="#a855f7" opacity=".22"/>
+      <text x="658" y="35" text-anchor="middle" fill="#d8b4fe" font-size="10" font-weight="700">ON SALE</text>
+    </g>
+
+    <!-- Row 3 -->
+    <g transform="translate(0, 148)">
+      <rect width="720" height="62" rx="12" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.08)"/>
+      <rect x="14" y="14" width="50" height="34" rx="8" fill="rgba(255,255,255,.1)"/>
+      <text x="39" y="29" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="9" font-weight="700">JUN</text>
+      <text x="39" y="44" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">04</text>
+      <text x="80" y="30" fill="#fff" font-size="14" font-weight="700">Barrowland Ballroom</text>
+      <text x="80" y="48" fill="rgba(255,255,255,.6)" font-size="11">Glasgow · Doors 19:30 · 612 / 1,900</text>
+      <rect x="612" y="20" width="92" height="22" rx="11" fill="#3b82f6" opacity=".22"/>
+      <text x="658" y="35" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="700">PRESALE</text>
+    </g>
+  </g>
+</svg>
